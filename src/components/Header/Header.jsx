@@ -1,3 +1,4 @@
+import logoText from '../../assets/Logo Text.svg';
 import './Header.scss';
 import { navItems } from '../../data/nav';
 
@@ -5,9 +6,8 @@ function Header() {
   return (
     <header className="header">
       <div className="container header__inner">
-        <a href="/" className="header__logo">
-          <span className="header__logo-box">VB</span>
-          <span className="header__logo-text">VIDER.BIZ</span>
+        <a href="#top" className="header__logo">
+          <img className="header__logo-image" src={logoText} alt="VIDER.BIZ" />
         </a>
 
         <nav className="header__nav">
