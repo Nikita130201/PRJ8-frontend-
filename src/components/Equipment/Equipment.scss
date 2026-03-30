@@ -1,0 +1,11 @@
+@use '../../styles/variables' as *;
+
+.equipment__placeholder {
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+  color: $text-muted;
+  font-size: 22px;
+  text-align: center;
+  padding: 32px;
+}

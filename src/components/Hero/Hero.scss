@@ -1,0 +1,139 @@
+@use '../../styles/variables' as *;
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  min-height: calc(100vh - 92px);
+}
+
+.hero__badge {
+  display: inline-flex;
+  margin-bottom: 28px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 223, 141, 0.4);
+  color: $green;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.hero__title {
+  margin: 0 0 24px;
+  font-size: clamp(42px, 6vw, 88px);
+  line-height: 0.98;
+  font-weight: 800;
+}
+
+.hero__title-accent {
+  color: $blue;
+}
+
+.hero__text {
+  margin: 0 0 28px;
+  color: $text-muted;
+  font-size: 20px;
+  max-width: 620px;
+}
+
+.hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.hero__chip {
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hero__chip--blue {
+  background: rgba(36, 87, 255, 0.12);
+  color: #dce5ff;
+}
+
+.hero__chip--green {
+  background: rgba(31, 223, 141, 0.12);
+  color: #d9fff0;
+}
+
+.hero__button {
+  display: inline-flex;
+  padding: 18px 30px;
+  border-radius: 14px;
+  background: $blue;
+  font-weight: 800;
+}
+
+.hero__visual {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.hero__placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  border-radius: 24px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  display: grid;
+  place-items: center;
+  color: $text-muted;
+  background: linear-gradient(180deg, rgba(7, 17, 48, 0.9) 0%, rgba(3, 11, 31, 0.9) 100%);
+}
+
+.hero__floating {
+  position: absolute;
+  padding: 20px 24px;
+  border-radius: 18px;
+  border: 1px solid rgba(58, 97, 255, 0.35);
+  background: rgba(5, 8, 22, 0.92);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero__floating strong {
+  font-size: 36px;
+  color: $blue;
+}
+
+.hero__floating--top {
+  top: 56px;
+  left: -20px;
+}
+
+.hero__floating--bottom {
+  right: -24px;
+  bottom: 34px;
+}
+
+@media (max-width: 980px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 24px;
+  }
+
+  .hero__visual {
+    min-height: 420px;
+  }
+
+  .hero__floating--top {
+    left: 16px;
+    top: 16px;
+  }
+
+  .hero__floating--bottom {
+    right: 16px;
+    bottom: 16px;
+  }
+}

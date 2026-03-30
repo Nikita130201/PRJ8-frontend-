@@ -1,0 +1,62 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+  background: rgba(5, 8, 22, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header__inner {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 800;
+}
+
+.header__logo-box {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: $blue;
+}
+
+.header__logo-text {
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+.header__nav {
+  display: flex;
+  gap: 36px;
+}
+
+.header__link {
+  color: $text-muted;
+}
+
+.header__button {
+  padding: 16px 28px;
+  border-radius: 14px;
+  background: $blue;
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .header__nav {
+    display: none;
+  }
+}

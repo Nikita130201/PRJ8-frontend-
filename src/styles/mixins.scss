@@ -1,0 +1,10 @@
+@mixin container {
+  width: min($container-width, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+@mixin card {
+  border-radius: $radius-lg;
+  border: 1px solid $border;
+  background: linear-gradient(180deg, rgba(13, 23, 63, 0.96) 0%, rgba(6, 12, 33, 0.96) 100%);
+}
