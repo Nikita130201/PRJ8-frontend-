@@ -4,59 +4,107 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 20;
-  backdrop-filter: blur(12px);
-  background: rgba(5, 8, 22, 0.85);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 30;
+  backdrop-filter: blur(14px);
+  background: rgba(8, 10, 28, 0.88);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
 }
 
 .header__inner {
-  min-height: 92px;
+  min-height: 96px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  padding: 28px 0;
+  width: min(100% - 240px, 1680px);
+  margin: 0 auto;
 }
 
 .header__logo {
   display: flex;
   align-items: center;
-  gap: 14px;
-  font-weight: 800;
+  flex-shrink: 0;
 }
 
-.header__logo-box {
-  width: 52px;
-  height: 52px;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
-  background: $blue;
-}
-
-.header__logo-text {
-  font-size: 18px;
-  letter-spacing: 0.02em;
+.header__logo-image {
+  display: block;
+  width: 229px;
+  height: 23px;
 }
 
 .header__nav {
   display: flex;
-  gap: 36px;
+  gap: 60px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .header__link {
-  color: $text-muted;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: $size-body-m-desktop;
+  font-weight: 400;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.header__link:hover {
+  color: #ffffff;
 }
 
 .header__button {
-  padding: 16px 28px;
-  border-radius: 14px;
-  background: $blue;
+  padding: 13px 27px;
+  border-radius: 10px;
+  background: #1950F3;
   font-weight: 700;
+  font-size: $size-button-m-desktop;
+  line-height: 1;
+  box-shadow: 0 16px 28px rgba(36, 87, 255, 0.24);
+}
+
+@media (max-width: 1440px) {
+  .header__link {
+    font-size: $size-body-m-laptop;
+  }
+
+  .header__button {
+    font-size: $size-button-m-laptop;
+  }
 }
 
 @media (max-width: 980px) {
+  .header__inner {
+    min-height: 80px;
+    padding: 20px 0;
+    width: min(100% - 48px, 1680px);
+  }
+
   .header__nav {
     display: none;
+  }
+
+  .header__button {
+    padding: 12px 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header__inner {
+    min-height: 72px;
+    padding: 16px 0;
+    width: min(100% - 32px, 1680px);
+  }
+
+  .header__logo-image {
+    width: 183px;
+    height: 32px;
+  }
+
+  .header__button {
+    font-size: $size-button-m-mobile;
+    padding: 11px 15px;
   }
 }
