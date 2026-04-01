@@ -15,8 +15,8 @@ body {
   margin: 0;
   font-family: $font-main;
   background:
-    radial-gradient(circle at 20% 0%, rgba(36, 87, 255, 0.12), transparent 30%),
-    radial-gradient(circle at 80% 10%, rgba(31, 223, 141, 0.08), transparent 25%),
+    radial-gradient(circle at 22% 2%, rgba($primary-500, 0.08), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba($success-500, 0.04), transparent 24%),
     $bg-main;
   color: $text-main;
 }
@@ -34,13 +34,13 @@ button {
   @include container;
 }
 
-@media (max-width: 980px) {
+@media (max-width: $breakpoint-tablet) {
   .container {
     width: min($container-width, calc(100% - 48px));
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: $breakpoint-mobile) {
   .container {
     width: min($container-width, calc(100% - 32px));
   }
@@ -59,19 +59,21 @@ button {
 }
 
 .section__title-accent {
-  color: $blue;
+  color: $primary-500;
 }
 
 .section__subtitle {
-  margin: 0 auto 28px;
+  margin: 0 auto 48px;
   max-width: 720px;
   text-align: center;
-  color: $text-muted;
-  font-size: $size-body-m-desktop;
-  line-height: 1.5;
+  color: #b0b7cb;
+  font-size: 20px;
+  padding-top: 12px;
+  font-weight: 400;
+  line-height: 150%;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: $breakpoint-laptop) {
   .section__title {
     font-size: clamp($size-h2-mobile, 4vw, $size-h2-laptop);
   }
@@ -81,7 +83,7 @@ button {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: $breakpoint-mobile) {
   .section__title {
     font-size: $size-h2-mobile;
   }

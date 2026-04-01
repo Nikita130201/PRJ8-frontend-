@@ -8,5 +8,5 @@
 @mixin card {
   border-radius: $radius-lg;
   border: 1px solid $border;
-  background: linear-gradient(180deg, rgba(13, 23, 63, 0.96) 0%, rgba(6, 12, 33, 0.96) 100%);
+  background: linear-gradient(180deg, rgba($primary-700, 0.96) 0%, rgba($theme-black, 0.96) 100%);
 }

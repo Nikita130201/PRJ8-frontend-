@@ -5,20 +5,19 @@
   position: sticky;
   top: 0;
   z-index: 30;
-  backdrop-filter: blur(14px);
-  background: rgba(8, 10, 28, 0.88);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(40px);
+  background: $surface-header;
+  border-bottom: 1px solid rgba($gray-100, 0.3);
 }
 
 .header__inner {
-  min-height: 96px;
+  height: 126px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 28px 0;
+  padding: 0;
   width: min(100% - 240px, 1680px);
   margin: 0 auto;
 }
@@ -44,7 +43,6 @@
 }
 
 .header__link {
-  color: rgba(255, 255, 255, 0.8);
   font-size: $size-body-m-desktop;
   font-weight: 400;
   line-height: 1;
@@ -52,20 +50,20 @@
 }
 
 .header__link:hover {
-  color: #ffffff;
+  color: $white;
 }
 
 .header__button {
   padding: 13px 27px;
   border-radius: 10px;
-  background: #1950F3;
+  background: $primary-500;
   font-weight: 700;
   font-size: $size-button-m-desktop;
   line-height: 1;
-  box-shadow: 0 16px 28px rgba(36, 87, 255, 0.24);
+  box-shadow: 0 16px 28px $shadow-primary-24;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: $breakpoint-laptop) {
   .header__link {
     font-size: $size-body-m-laptop;
   }
@@ -75,7 +73,7 @@
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: $breakpoint-tablet) {
   .header__inner {
     min-height: 80px;
     padding: 20px 0;
@@ -91,7 +89,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: $breakpoint-mobile) {
   .header__inner {
     min-height: 72px;
     padding: 16px 0;
