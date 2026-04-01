@@ -1,6 +1,6 @@
 export const navItems = [
-  { label: 'Экономика', href: '#economy' },
   { label: 'Безопасность', href: '#security' },
+  { label: 'Экономика', href: '#economy' },
   { label: 'Техчасть', href: '#infrastructure' },
   { label: 'Специфика стран', href: '#map' },
 ];
