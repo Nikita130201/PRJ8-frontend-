@@ -1,5 +1,8 @@
 @use '../../styles/variables' as *;
 
+.security.section {
+  padding-top: 140px;
+}
 
 .security__title {
   margin-bottom: 14px;
@@ -173,6 +176,10 @@
 }
 
 @media (max-width: 640px) {
+
+  .security.section {
+    padding-top: 96px;
+  }
 
   .security__subtitle {
     margin-bottom: 32px;
