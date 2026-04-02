@@ -1,11 +1,398 @@
 @use '../../styles/variables' as *;
 
-.economy__placeholder {
-  min-height: 320px;
+.economy.section {
+  padding-top: 92px;
+}
+
+.economy__title {
+  margin-bottom: 14px;
+}
+
+.economy__subtitle {
+  margin-bottom: 58px;
+  max-width: 560px;
+}
+
+.economy__plans {
   display: grid;
-  place-items: center;
-  color: $text-muted;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.economy__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  border-radius: 32px;
+  background: #0c0b16;
+  border: 1px solid $border-primary-soft;
+  box-shadow:
+    0 18px 48px rgba($theme-black, 0.24),
+    inset 0 0 0 1px rgba($white, 0.02);
+}
+
+.economy__card--green {
+  border-color: rgba($success-400, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(19, 225, 126, 0.06),
+    0 0 28px rgba(19, 225, 126, 0.14),
+    0 0 18px rgba(25, 80, 243, 0.08),
+    0 16px 50px rgba(0, 0, 0, 0.40),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.economy__card--blue {
+  border-color: rgba(0, 38, 151, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(25, 80, 243, 0.06),
+    0 0 28px rgba(25, 80, 243, 0.14),
+    0 0 18px rgba(19, 225, 126, 0.08),
+    0 16px 50px rgba(0, 0, 0, 0.40),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+
+
+.economy__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  margin-bottom: 32px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  border: 1px solid;
   font-size: 22px;
-  text-align: center;
-  padding: 32px;
+  font-weight: 700;
+  line-height: 120%;
+  text-transform: uppercase;
+}
+
+.economy__badge--green {
+  color: $success-300;
+  background: rgba($success-900, 0.86);
+  border-color: rgba($success-400, 0.28);
+}
+
+.economy__badge--blue {
+  color: $primary-300;
+  background: rgba($primary-900, 0.8);
+  border-color: rgba($primary-400, 0.28);
+}
+
+.economy__badge-trend,
+.economy__badge-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.economy__badge-trend {
+  width: 18px;
+  height: 18px;
+}
+
+.economy__badge-trend svg {
+  width: 100%;
+  height: 100%;
+}
+
+.economy__badge-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 12px rgba($primary-400, 0.5);
+}
+
+.economy__card-title {
+  margin: 0 0 12px;
+  color: $white;
+  font-size: 42px;
+  line-height: 1.06;
+  font-weight: 700;
+}
+
+.economy__card-subtitle {
+  margin: 0 0 48px;
+  color: $gray-600;
+  font-size: 22px;
+  line-height: 140%;
+  font-weight: 500;
+}
+
+.economy__value {
+  margin-bottom: 12px;
+  font-size: 100px;
+  line-height: 0.92;
+  font-weight: 700;
+  line-height: 110.00000000000001%;
+}
+
+.economy__card--green .economy__value {
+  color: #18e98c;
+}
+
+.economy__card--blue .economy__value {
+  color: $primary-500;
+}
+
+.economy__caption {
+  margin: 0 0 48px;
+  color: $gray-600;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.economy__features {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.economy__feature {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 20px;
+  align-items: start;
+  color: $gray-200;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.economy__feature-mark {
+  width: 27px;
+  height: 27px;
+  margin-top: -2px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.economy__feature-mark--green {
+  color: $success-600;
+  background: rgba($success-800, 0.5);
+}
+
+.economy__feature-mark--blue {
+  color: $primary-600;
+  background: rgba($primary-800, 0.65);
+}
+
+.economy__feature-accent {
+  font-weight: 600;
+}
+
+.economy__feature-accent--green {
+  color: $success-400;
+}
+
+.economy__feature-accent--blue {
+  color: $primary-300;
+}
+
+.economy__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 48px;
+  padding: 20px 0px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.economy__button--green {
+  color: #03150d;
+  background: $success-500;
+  box-shadow: 0 12px 36px rgba($success-500, 0.28);
+}
+
+.economy__button--blue {
+  color: $white;
+  background: $primary-500;
+  box-shadow: 0 12px 36px rgba($primary-500, 0.28);
+}
+
+.economy__bonus {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  margin-top: 48px;
+  min-height: 144px;
+  padding: 48px;
+  border-radius: 24px;
+  border: 1px solid rgba($primary-300, 0.3);
+  background: rgba($gray-900, 0.62);
+  box-shadow: 0 18px 42px rgba($theme-black, 0.24);
+}
+
+.economy__bonus-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  background: linear-gradient(180deg, $primary-500 0%, $success-500 100%);
+  box-shadow: 0 16px 30px rgba($primary-500, 0.18);
+  padding: 24px;
+}
+
+.economy__bonus-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.economy__bonus-title {
+  margin: 0 0 12px;
+  color: $white;
+  font-size: 30px;
+  line-height: 110.00000000000001%;
+  font-weight: 700;
+}
+
+.economy__bonus-text {
+  margin: 0;
+  max-width: 950px;
+  color: $gray-200;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.economy__bonus-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 228px;
+  min-height: 52px;
+  padding: 20px 71px;
+  border-radius: 8px;
+  color: $white;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  background: linear-gradient(90deg, #1ed77b 0%, $primary-500 100%);
+}
+
+@media (max-width: 1440px) {
+  .economy__card {
+    min-height: 720px;
+    padding: 48px;
+  }
+
+  .economy__card-title {
+    font-size: 30px;
+  }
+
+  .economy__value {
+    font-size: 68px;
+  }
+
+  .economy__feature {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .economy__plans {
+    grid-template-columns: 1fr;
+  }
+
+  .economy__card {
+    min-height: auto;
+  }
+
+  .economy__bonus {
+    grid-template-columns: auto 1fr;
+  }
+
+  .economy__bonus-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .economy.section {
+    padding-top: 112px;
+  }
+
+  .economy__subtitle {
+    margin-bottom: 36px;
+  }
+
+  .economy__card {
+    padding: 24px 20px;
+  }
+
+  .economy__badge {
+    margin-bottom: 32px;
+    padding: 12px 18px;
+    font-size: 15px;
+  }
+
+  .economy__card-title {
+    font-size: 28px;
+  }
+
+  .economy__card-subtitle {
+    margin-bottom: 26px;
+    font-size: 15px;
+  }
+
+  .economy__value {
+    font-size: 52px;
+  }
+
+  .economy__features {
+    gap: 14px;
+  }
+
+  .economy__feature {
+    font-size: 12px;
+  }
+
+  .economy__button {
+    font-size: 16px;
+  }
+
+  .economy__bonus {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 24px 20px;
+  }
+
+  .economy__bonus-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+  }
+
+  .economy__bonus-title {
+    font-size: 18px;
+  }
+
+  .economy__bonus-text {
+    font-size: 13px;
+  }
+
+  .economy__bonus-button {
+    min-width: 0;
+    width: 100%;
+    font-size: 16px;
+  }
 }
