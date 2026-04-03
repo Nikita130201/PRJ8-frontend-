@@ -13,16 +13,17 @@
 .hero::before {
   content: '';
   position: absolute;
-  top: 108px;
-  left: calc(50% + 306px);
+  top: 1px;
+  left: calc(50% + 416px);
   width: 1084px;
   height: 1084px;
   transform: translateX(-50%);
   border-radius: 50%;
-  background: rgba($primary-500, 0.12);
-  filter: blur(480px);
+  background: $primary-500;
+  filter: blur(500px);
   pointer-events: none;
   z-index: 0;
+  opacity: 10%;
 }
 
 .hero__grid {
@@ -32,7 +33,7 @@
   justify-content: space-between;
   gap: 56px;
   min-height: 910px;
-  padding-top: 52px;
+  padding-top: 100px;
   padding-bottom: 0;
   position: relative;
   z-index: 1;
@@ -223,7 +224,7 @@
 .hero__visual {
   position: relative;
   width: min(100%, 872px);
-  height: 822px;
+  height: 775px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -262,7 +263,7 @@
 .hero__visual-frame {
   position: relative;
   width: min(100%, 824px);
-  height: 774px;
+  height: 724px;
   overflow: hidden;
   border-radius: 20px;
   background: $theme-black;
