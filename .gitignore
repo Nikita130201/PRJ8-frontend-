@@ -1,3 +1,8 @@
 node_modules
 dist
 .env
+.DS_Store
+tmp/
+src/assets/images/GeoMapSource/
+src/assets/images/GeoMap/*
+!src/assets/images/GeoMap/world.svg
