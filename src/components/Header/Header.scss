@@ -2,9 +2,11 @@
 @use '../../styles/mixins' as *;
 
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 30;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   backdrop-filter: blur(40px);
   background: $surface-header;
   border-bottom: 1px solid rgba($gray-100, 0.3);
@@ -43,9 +45,9 @@
 }
 
 .header__link {
-  font-size: $size-body-m-desktop;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 1;
+  line-height: 150%;
   transition: color 0.2s ease;
 }
 
