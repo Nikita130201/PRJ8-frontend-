@@ -19,7 +19,7 @@
 
 .geomap__map-surface {
   position: relative;
-  padding: 48px 143px;
+  padding: 12px 18px 16px;
   border-radius: 32px;
   border: 1px solid #213a84;
   background: #151F3E33;
@@ -29,72 +29,192 @@
 .geomap__map-visual {
   position: relative;
   width: 100%;
-  aspect-ratio: 1394 / 919;
+  aspect-ratio: 1680 / 1016;
   border-radius: 24px;
   overflow: hidden;
   background: transparent;
 }
 
-.geomap__map-background {
+.geomap__map-visual::after {
+  content: '';
   position: absolute;
   inset: 0;
-  z-index: 0;
-}
-
-.geomap__map-base-svg {
-  position: absolute;
-  inset: 6.5% 7.5% 8%;
-  width: 85%;
-  height: 85.5%;
+  background: rgba(#6f737b, 0);
+  transition: background 180ms ease;
   pointer-events: none;
 }
 
-.geomap__map-base-svg svg {
+
+.geomap__map-base {
   width: 100%;
   height: 100%;
+  padding: 48px 143px;
   display: block;
-  overflow: visible;
-  pointer-events: auto;
 }
 
-.geomap__map-base-svg path[fill="#151F3E"] {
-  fill: #151f3e;
-  stroke: #273252;
+.geomap__map-country {
+  fill: $gray-900;
+  stroke: $gray-800;
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
+  transition:
+    fill 180ms ease,
+    opacity 180ms ease;
   cursor: pointer;
+  outline: none;
 }
 
-.geomap__map-base-svg path[fill="#151F3E"]:hover {
-  fill: #1b2647;
+.geomap__map-country:hover {
+  stroke: #4d7aff;
+  stroke-width: 1.5;
 }
 
-.geomap__map-base-svg path[fill="#273252"] {
-  fill: #273252;
-  transition: fill 160ms ease;
-  pointer-events: none;
+
+.geomap__map-country.is-dimmed {
+  opacity: 0.32;
 }
 
-.geomap__map-glow {
-  display: none;
+.geomap__map-country.is-dimmed:hover {
+  stroke: #4d7aff;
+  stroke-width: 1.5;
 }
 
-.geomap__map-glow--left {
-  inset: 18% auto auto 9%;
-  width: 28%;
-  height: 24%;
-  background: radial-gradient(circle, rgba(#29d89b, 0.18), transparent 70%);
+
+.geomap__map-country.is-level-green {
+  fill: $success-900;
+  stroke: $success-700;
 }
 
-.geomap__map-glow--right {
-  inset: auto 10% 14% auto;
-  width: 26%;
-  height: 22%;
-  background: radial-gradient(circle, rgba(#ff5e67, 0.16), transparent 72%);
+.geomap__map-country.is-level-yellow {
+  fill: $warning-900;
+  stroke: $warning-700;
 }
 
-.geomap__map-grid {
-  display: none;
+.geomap__map-country.is-level-red {
+  fill: $error-900;
+  stroke: $error-700;
+}
+
+.geomap__map-country.is-hovered {
+  opacity: 1;
+}
+
+.geomap__country-card {
+  position: absolute;
+  top: 22%;
+  right: 6.5%;
+  z-index: 3;
+  width: 286px;
+  padding: 18px 18px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba($error-700, 0.7);
+  background:
+    radial-gradient(circle at 76% 66%, rgba($primary-400, 0.18) 0, rgba($primary-400, 0) 18%),
+    linear-gradient(180deg, rgba($primary-800, 0.94) 0%, rgba($theme-black, 0.95) 100%);
+  box-shadow: 0 18px 40px rgba($theme-black, 0.32);
+}
+
+.geomap__country-card-title {
+  margin: 0 0 16px;
+  font-size: 22px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.geomap__country-card-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 14px;
+  border-radius: 16px;
+  border: 1px solid;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.geomap__country-card-chip-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.geomap__country-card-chip--green {
+  color: $success-200;
+  background: rgba($success-900, 0.92);
+  border-color: rgba($success-700, 0.8);
+}
+
+.geomap__country-card-chip--green .geomap__country-card-chip-dot {
+  background: $success-300;
+}
+
+.geomap__country-card-chip--yellow {
+  color: $warning-100;
+  background: rgba($warning-900, 0.92);
+  border-color: rgba($warning-700, 0.8);
+}
+
+.geomap__country-card-chip--yellow .geomap__country-card-chip-dot {
+  background: $warning-400;
+}
+
+.geomap__country-card-chip--red {
+  color: $error-100;
+  background: rgba($error-900, 0.92);
+  border-color: rgba($error-700, 0.8);
+}
+
+.geomap__country-card-chip--red .geomap__country-card-chip-dot {
+  background: $error-300;
+}
+
+.geomap__country-card-divider {
+  height: 1px;
+  margin: 16px 0;
+  background: rgba($gray-400, 0.35);
+}
+
+.geomap__country-card-label {
+  color: $gray-200;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.geomap__country-card-income {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.geomap__country-card-period {
+  margin-top: 8px;
+  color: $gray-400;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.geomap__country-card-note-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.geomap__country-card-note-icon {
+  flex-shrink: 0;
+  color: $success-400;
+  line-height: 0;
+}
+
+.geomap__country-card-note {
+  margin: 0;
+  color: $gray-100;
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 .geomap__legend {
@@ -104,24 +224,29 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 32px;
 }
 
 .geomap__legend-item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 12px;
   width: 206px;
   height: 58px;
-  padding: 16px 32px;
+  padding: 10px 18px;
   border-radius: 16px;
   border: 1px solid;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1;
   font-weight: 700;
   white-space: nowrap;
   box-shadow: inset 0 1px 0 rgba($white, 0.05);
   opacity: 1;
+}
+
+.geomap__legend-item.is-active {
+  box-shadow: 0 0 0 2px currentColor;
 }
 
 .geomap__legend-item--green {
@@ -149,8 +274,8 @@
 }
 
 .geomap__legend-dot {
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -438,6 +563,10 @@
   .geomap__map-visual {
     min-height: 820px;
   }
+
+  .geomap__map-base {
+    padding: 9.5% 10.5% 10.5%;
+  }
 }
 
 @media (max-width: $breakpoint-tablet) {
@@ -452,6 +581,16 @@
 
   .geomap__map-visual {
     min-height: 580px;
+  }
+
+  .geomap__map-base {
+    padding: 8.5% 8% 9.5%;
+  }
+
+  .geomap__country-card {
+    top: 18%;
+    right: 4%;
+    width: 240px;
   }
 
   .geomap__legend {
@@ -491,6 +630,16 @@
   .geomap__map-visual {
     min-height: 360px;
     border-radius: 18px;
+  }
+
+  .geomap__map-base {
+    padding: 8% 4% 10%;
+  }
+
+  .geomap__country-card {
+    position: static;
+    width: 100%;
+    margin-top: 18px;
   }
 
   .geomap__legend {
