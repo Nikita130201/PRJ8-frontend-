@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -16,15 +17,18 @@ body {
   font-family: $font-main;
   background: #0C0B16;
   color: $text-main;
+  overflow-x: hidden;
 }
 
 #root {
   position: relative;
+  overflow-x: hidden;
 }
 
 .page {
   position: relative;
   padding-top: 126px;
+  overflow-x: hidden;
 }
 
 @media (max-width: $breakpoint-tablet) {

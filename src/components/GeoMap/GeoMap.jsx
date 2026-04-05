@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import "./GeoMap.scss";
 
@@ -216,9 +216,25 @@ function GeoMap() {
   const [hoveredCountryId, setHoveredCountryId] = useState(null);
   const [activeLevel, setActiveLevel] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const hoveredCountry =
     interactiveCountries.find((country) => country.id === hoveredCountryId) ?? null;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+    const updateTouchState = () => setIsTouchDevice(mediaQuery.matches);
+
+    updateTouchState();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", updateTouchState);
+      return () => mediaQuery.removeEventListener("change", updateTouchState);
+    }
+
+    mediaQuery.addListener(updateTouchState);
+    return () => mediaQuery.removeListener(updateTouchState);
+  }, []);
 
   const handleToggle = (id) => {
     setOpenItem((current) => (current === id ? null : id));
@@ -248,7 +264,7 @@ function GeoMap() {
                 projectionConfig={{
                   scale: 135,
                   center: [0, 40],
-                  rotate: [-10, 0, 0],
+                  rotate: [-11, 0, 0],
                 }}
               >
                 <Geographies geography={GEO_URL}>
@@ -282,13 +298,21 @@ function GeoMap() {
                             geography={geo}
                             className={classNames.join(" ")}
                             onMouseEnter={(evt) => {
+                              if (isTouchDevice) return;
                               setHoveredCountryId(country?.id ?? null);
                               setMousePos({ x: evt.clientX, y: evt.clientY });
                             }}
                             onMouseMove={(evt) => {
+                              if (isTouchDevice) return;
                               setMousePos({ x: evt.clientX, y: evt.clientY });
                             }}
                             onMouseLeave={() => setHoveredCountryId(null)}
+                            onClick={() => {
+                              if (!isTouchDevice || !country) return;
+                              setHoveredCountryId((current) =>
+                                current === country.id ? null : country.id,
+                              );
+                            }}
                           />
                         );
                       })
@@ -300,14 +324,24 @@ function GeoMap() {
                 <aside
                   className="geomap__country-card"
                   aria-live="polite"
-                  style={{
-                    position: "fixed",
-                    left: mousePos.x + 20,
-                    top: mousePos.y - 20,
-                    zIndex: 100,
+                  style={
+                    isTouchDevice
+                      ? undefined
+                      : {
+                          position: "fixed",
+                          left: mousePos.x + 20,
+                          top: mousePos.y - 20,
+                          zIndex: 100,
+                        }
+                  }
+                  onMouseEnter={() => {
+                    if (isTouchDevice) return;
+                    setHoveredCountryId(hoveredCountryId);
                   }}
-                  onMouseEnter={() => setHoveredCountryId(hoveredCountryId)}
-                  onMouseLeave={() => setHoveredCountryId(null)}
+                  onMouseLeave={() => {
+                    if (isTouchDevice) return;
+                    setHoveredCountryId(null);
+                  }}
                 >
                   <h3 className="geomap__country-card-title">{hoveredCountry.label}</h3>
 
