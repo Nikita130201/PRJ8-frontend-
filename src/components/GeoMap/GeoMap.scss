@@ -59,40 +59,44 @@
   vector-effect: non-scaling-stroke;
   transition:
     fill 180ms ease,
+    stroke 180ms ease,
+    stroke-width 180ms ease,
     opacity 180ms ease;
   cursor: pointer;
   outline: none;
 }
 
-.geomap__map-country:hover {
+/* hover только для стран БЕЗ уровня */
+.geomap__map-country:not(.is-level-green):not(.is-level-yellow):not(.is-level-red):hover {
   stroke: #4d7aff;
   stroke-width: 1.5;
 }
-
 
 .geomap__map-country.is-dimmed {
   opacity: 0.32;
 }
 
-.geomap__map-country.is-dimmed:hover {
-  stroke: #4d7aff;
-  stroke-width: 1.5;
-}
-
-
 .geomap__map-country.is-level-green {
   fill: $success-900;
   stroke: $success-700;
+  stroke-width: 1.5;
 }
 
 .geomap__map-country.is-level-yellow {
   fill: $warning-900;
   stroke: $warning-700;
+  stroke-width: 1.5;
 }
 
 .geomap__map-country.is-level-red {
   fill: $error-900;
   stroke: $error-700;
+  stroke-width: 1.5;
+}
+
+.geomap__map-country.is-hovered:not(.is-level-green):not(.is-level-yellow):not(.is-level-red) {
+  stroke: #4d7aff;
+  stroke-width: 1.5;
 }
 
 .geomap__map-country.is-hovered {
@@ -430,7 +434,7 @@
 
 .geomap__accordion-arrow {
   color: $gray-300;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease;
 }
 
 .geomap__accordion-item--green .geomap__accordion-arrow {
@@ -453,24 +457,50 @@
   transform: rotate(180deg);
 }
 
-.geomap__accordion-body {
-  padding: 24px 48px 48px 48px;
-  border-top: 1px solid rgba($white, 0.08);
+/* АНИМАЦИЯ РАСКРЫТИЯ */
+.geomap__accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
 }
 
-.geomap__accordion-item--green .geomap__accordion-body {
+.geomap__accordion-content.is-open {
+  grid-template-rows: 1fr;
+}
+
+.geomap__accordion-body {
+  overflow: hidden;
+  padding: 0 48px;
+  border-top: 1px solid rgba($white, 0);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease,
+    padding 0.35s ease,
+    border-top-color 0.35s ease;
+}
+
+.geomap__accordion-content.is-open .geomap__accordion-body {
+  padding: 24px 48px 48px 48px;
+  opacity: 1;
+  transform: translateY(0);
+  border-top-color: rgba($white, 0.08);
+}
+
+.geomap__accordion-item--green .geomap__accordion-content.is-open .geomap__accordion-body {
   border-top-color: $success-700;
 }
 
-.geomap__accordion-item--yellow .geomap__accordion-body {
+.geomap__accordion-item--yellow .geomap__accordion-content.is-open .geomap__accordion-body {
   border-top-color: $warning-700;
 }
 
-.geomap__accordion-item--red .geomap__accordion-body {
+.geomap__accordion-item--red .geomap__accordion-content.is-open .geomap__accordion-body {
   border-top-color: $error-700;
 }
 
-.geomap__accordion-item--gray .geomap__accordion-body {
+.geomap__accordion-item--gray .geomap__accordion-content.is-open .geomap__accordion-body {
   border-top-color: $gray-700;
 }
 
@@ -508,7 +538,6 @@
 .geomap__accordion-item--gray .geomap__accordion-section-title {
   color: $gray-200;
 }
-
 .geomap__chips {
   display: flex;
   flex-wrap: wrap;

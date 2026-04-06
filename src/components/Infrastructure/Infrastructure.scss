@@ -20,6 +20,8 @@
 }
 
 .infrastructure__card {
+  position: relative;
+  overflow: hidden;
   min-height: 356px;
   padding: 48px;
   border-radius: 32px;
@@ -28,6 +30,57 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+
+  opacity: 0;
+  transform: translateY(28px) scale(0.96);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease;
+}
+
+.infrastructure__grid--visible .infrastructure__card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.infrastructure__grid--visible .infrastructure__card:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.infrastructure__grid--visible .infrastructure__card:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.infrastructure__grid--visible .infrastructure__card:nth-child(3) {
+  transition-delay: 0.25s;
+}
+
+.infrastructure__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 42%
+  );
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.infrastructure__card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.28s ease;
 }
 
 .infrastructure__card--blue {
@@ -40,6 +93,33 @@
   border-color: rgba($success-500, 0.34);
 }
 
+.infrastructure__card--blue::after {
+  box-shadow: 0 0 30px rgba($primary-500, 0.18);
+}
+
+.infrastructure__card--green::after {
+  box-shadow: 0 0 30px rgba($success-400, 0.16);
+}
+
+.infrastructure__card:hover {
+  transform: translateY(-6px);
+}
+
+.infrastructure__card--blue:hover {
+  border-color: rgba($primary-300, 0.72);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
+}
+
+.infrastructure__card--green:hover {
+  border-color: rgba($success-400, 0.52);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
+}
+
+.infrastructure__card:hover::before,
+.infrastructure__card:hover::after {
+  opacity: 1;
+}
+
 .infrastructure__icon {
   width: 96px;
   height: 96px;
@@ -49,6 +129,11 @@
   margin-bottom: 24px;
   border: 1px solid;
   flex-shrink: 0;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease,
+    border-color 0.28s ease;
 }
 
 .infrastructure__icon img {
@@ -56,6 +141,7 @@
   width: 48px;
   height: 48px;
   object-fit: contain;
+  transition: transform 0.28s ease;
 }
 
 .infrastructure__icon--blue {
@@ -70,11 +156,28 @@
   border-color: $success-600;
 }
 
+.infrastructure__card:hover .infrastructure__icon {
+  transform: translateY(-2px);
+}
+
+.infrastructure__card--blue:hover .infrastructure__icon {
+  box-shadow: 0 10px 24px rgba($primary-500, 0.16);
+}
+
+.infrastructure__card--green:hover .infrastructure__icon {
+  box-shadow: 0 10px 24px rgba($success-400, 0.14);
+}
+
+.infrastructure__card:hover .infrastructure__icon img {
+  transform: scale(1.06);
+}
+
 .infrastructure__card-title {
   margin: 0 0 16px;
   font-size: 30px;
-  line-height: 110.00000000000001%;
+  line-height: 110%;
   font-weight: 700;
+  transition: transform 0.28s ease;
 }
 
 .infrastructure__card-accent {
@@ -82,6 +185,7 @@
   font-size: 22px;
   line-height: 140%;
   font-weight: 500;
+  transition: transform 0.28s ease, color 0.28s ease;
 }
 
 .infrastructure__card-accent--blue {
@@ -99,6 +203,13 @@
   font-size: $size-body-m-desktop;
   line-height: 150%;
   font-weight: 400;
+  transition: transform 0.28s ease;
+}
+
+.infrastructure__card:hover .infrastructure__card-title,
+.infrastructure__card:hover .infrastructure__card-accent,
+.infrastructure__card:hover .infrastructure__card-text {
+  transform: translateY(-1px);
 }
 
 @media (max-width: $breakpoint-laptop) {
@@ -174,4 +285,34 @@
   .infrastructure__card-text {
     font-size: $size-body-m-mobile;
   }
+
+  /* === ANIMATION ON SCROLL === */
+
+.infrastructure__card {
+  opacity: 0;
+  transform: translateY(28px) scale(0.96);
+}
+
+.infrastructure__grid--visible .infrastructure__card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+/* stagger */
+.infrastructure__grid--visible .infrastructure__card:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.infrastructure__grid--visible .infrastructure__card:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.infrastructure__grid--visible .infrastructure__card:nth-child(3) {
+  transition-delay: 0.25s;
+}
+
 }

@@ -1,4 +1,5 @@
 @use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
 
 .hero {
   position: relative;
@@ -194,19 +195,20 @@
 }
 
 .hero__button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  @include primary-button;
   align-self: flex-start;
   width: fit-content;
   min-width: 198px;
-  padding: 18px 29px;
-  border-radius: 10px;
-  background: $primary-500;
+  padding: 20px 50px;
+  border-radius: 8px;
   font-weight: 700;
-  font-size: $size-button-m-desktop;
+  font-size: 20px;
   line-height: 1;
   box-shadow: 0 18px 34px $shadow-primary-28;
+
+  &:hover {
+    box-shadow: 0 22px 38px $shadow-primary-28;
+  }
 }
 
 .hero__note {

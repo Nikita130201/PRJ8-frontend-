@@ -8,5 +8,58 @@
 @mixin card {
   border-radius: $radius-lg;
   border: 1px solid $border;
-  background: linear-gradient(180deg, rgba($primary-700, 0.96) 0%, rgba($theme-black, 0.96) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba($primary-700, 0.96) 0%,
+    rgba($theme-black, 0.96) 100%
+  );
+}
+
+@mixin primary-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  color: $text-main;
+  background: $primary-500;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 120%;
+    height: 100%;
+    background: linear-gradient(
+      100deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.14) 50%,
+      transparent 100%
+    );
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:hover::before {
+    left: 130%;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.45);
+    outline-offset: 3px;
+  }
 }
