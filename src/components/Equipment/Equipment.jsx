@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import badgeStarIcon from '../../assets/images/icons/Equipment/star.svg';
 import successIcon from '../../assets/images/icons/Equipment/success.svg';
 import './Equipment.scss';
@@ -29,6 +30,45 @@ const equipmentSteps = [
 ];
 
 function Equipment() {
+  const stepsRef = useRef(null);
+  const progressRef = useRef(null);
+
+  const [isStepsVisible, setIsStepsVisible] = useState(false);
+  const [isProgressVisible, setIsProgressVisible] = useState(false);
+
+  useEffect(() => {
+    const stepsElement = stepsRef.current;
+    const progressElement = progressRef.current;
+
+    if (!stepsElement || !progressElement) return;
+
+    const stepsObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsStepsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.50,
+      }
+    );
+
+    const progressObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsProgressVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.75,
+      }
+    );
+
+    stepsObserver.observe(stepsElement);
+    progressObserver.observe(progressElement);
+
+    return () => {
+      stepsObserver.disconnect();
+      progressObserver.disconnect();
+    };
+  }, []);
+
   return (
     <section className="equipment section" id="equipment">
       <div className="container">
@@ -44,10 +84,18 @@ function Equipment() {
         </h2>
 
         <div className="equipment__panel">
-          <div className="equipment__steps">
+          {/* ШАГИ */}
+          <div
+            className={`equipment__steps ${
+              isStepsVisible ? 'equipment__steps--visible' : ''
+            }`}
+            ref={stepsRef}
+          >
             {equipmentSteps.map((step) => (
               <article className="equipment__step" key={step.number}>
-                <div className={`equipment__step-number equipment__step-number--${step.variant}`}>
+                <div
+                  className={`equipment__step-number equipment__step-number--${step.variant}`}
+                >
                   {step.number}
                 </div>
                 <h3 className="equipment__step-title">{step.title}</h3>
@@ -56,14 +104,20 @@ function Equipment() {
             ))}
           </div>
 
-          <div className="equipment__calculator">
+          {/* КАЛЬКУЛЯТОР */}
+          <div className="equipment__calculator" ref={progressRef}>
             <div className="equipment__calculator-head">
               <div>
-                <p className="equipment__calculator-label">Залоговая стоимость за 32-канальный шлюз</p>
+                <p className="equipment__calculator-label">
+                  Залоговая стоимость за 32-канальный шлюз
+                </p>
                 <strong className="equipment__calculator-value">$3,000</strong>
               </div>
+
               <div className="equipment__calculator-side">
-                <p className="equipment__calculator-label">Реальные затраты через год</p>
+                <p className="equipment__calculator-label">
+                  Реальные затраты через год
+                </p>
                 <strong className="equipment__calculator-value equipment__calculator-value--green">
                   ~$1,500
                 </strong>
@@ -71,15 +125,24 @@ function Equipment() {
             </div>
 
             <div className="equipment__progress" aria-hidden="true">
-              <span className="equipment__progress-fill" />
+              <span
+                className={`equipment__progress-fill ${
+                  isProgressVisible
+                    ? 'equipment__progress-fill--visible'
+                    : ''
+                }`}
+              />
             </div>
 
             <div className="equipment__calculator-foot">
               <span>Выкупили на 50%</span>
-              <span className="equipment__calculator-saving">Экономия 50%</span>
+              <span className="equipment__calculator-saving">
+                Экономия 50%
+              </span>
             </div>
           </div>
 
+          {/* ИТОГ */}
           <aside className="equipment__summary">
             <div className="equipment__summary-icon" aria-hidden="true">
               <img src={successIcon} alt="" />
@@ -88,9 +151,16 @@ function Equipment() {
             <div className="equipment__summary-content">
               <h3 className="equipment__summary-title">Итог:</h3>
               <p className="equipment__summary-text">
-                Через год шлюз переходит в вашу <span className="equipment__summary-accent equipment__summary-accent--blue">полную собственность</span>, фактически оплатив лишь{' '}
-                <span className="equipment__summary-accent equipment__summary-accent--green">50% его стоимости</span>{' '}
-                из прибыли. Вы продолжаете зарабатывать, а депозит возвращается из Гаранта.
+                Через год шлюз переходит в вашу{' '}
+                <span className="equipment__summary-accent equipment__summary-accent--blue">
+                  полную собственность
+                </span>
+                , фактически оплатив лишь{' '}
+                <span className="equipment__summary-accent equipment__summary-accent--green">
+                  50% его стоимости
+                </span>{' '}
+                из прибыли. Вы продолжаете зарабатывать, а депозит
+                возвращается из Гаранта.
               </p>
             </div>
           </aside>

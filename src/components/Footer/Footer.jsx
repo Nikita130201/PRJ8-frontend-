@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import "./Footer.scss";
 
 const navLinks = [
@@ -25,8 +26,34 @@ function TelegramIcon() {
 }
 
 function Footer() {
+  const footerRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = footerRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -8% 0px",
+      }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <footer className="footer" id="contacts">
+    <footer
+      className={`footer ${isVisible ? "footer--visible" : ""}`}
+      id="contacts"
+      ref={footerRef}
+    >
       <div className="container">
         <div className="footer__shell">
           <div className="footer__top-line" aria-hidden="true" />
@@ -52,7 +79,7 @@ function Footer() {
           <div className="footer__middle-line" aria-hidden="true" />
 
           <div className="footer__grid">
-            <div className="footer__brand">
+            <div className="footer__brand footer__reveal-item">
               <a href="#" className="footer__logo">
                 <span className="footer__logo-accent">DM.</span>
                 <span>VIDER.</span>
@@ -65,7 +92,7 @@ function Footer() {
               </p>
             </div>
 
-            <div className="footer__nav">
+            <div className="footer__nav footer__reveal-item">
               <h3 className="footer__column-title">Навигация</h3>
               <nav className="footer__nav-list" aria-label="Footer navigation">
                 {navLinks.map((link) => (
@@ -80,7 +107,7 @@ function Footer() {
               </nav>
             </div>
 
-            <div className="footer__contacts">
+            <div className="footer__contacts footer__reveal-item">
               <h3 className="footer__column-title">Контакты</h3>
               <div className="footer__contact-list">
                 <p className="footer__contact-row">

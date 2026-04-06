@@ -48,21 +48,26 @@
   font-size: 20px;
   font-weight: 400;
   line-height: 150%;
+  color: $primary-50;
   transition: color 0.2s ease;
 }
 
 .header__link:hover {
-  color: $white;
+  color: $success-500;
 }
 
 .header__button {
+  @include primary-button;
   padding: 20px 40px;
   border-radius: 8px;
-  background: $primary-500;
   font-weight: 700;
   font-size: $size-button-m-desktop;
   line-height: 1;
   box-shadow: 0 16px 28px $shadow-primary-24;
+
+  &:hover {
+    box-shadow: 0 20px 34px $shadow-primary-28;
+  }
 }
 
 @media (max-width: $breakpoint-laptop) {

@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import lightningIcon from '../../assets/images/icons/Infrastructure/Lighthing.svg';
 import wifiIcon from '../../assets/images/icons/Infrastructure/WiFi.svg';
 import locationIcon from '../../assets/images/icons/Infrastructure/Location.svg';
@@ -31,17 +32,44 @@ const infrastructureCards = [
 ];
 
 function Infrastructure() {
+  const gridRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.50,
+      }
+    );
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="infrastructure section" id="infrastructure">
       <div className="container">
         <h2 className="section__title infrastructure__title">
           Техническая <span className="section__title-accent">Инфраструктура</span>
         </h2>
+
         <p className="section__subtitle infrastructure__subtitle">
           Минимальные требования — максимальная эффективность
         </p>
 
-        <div className="infrastructure__grid">
+        <div
+          className={`infrastructure__grid ${
+            isVisible ? 'infrastructure__grid--visible' : ''
+          }`}
+          ref={gridRef}
+        >
           {infrastructureCards.map((card) => (
             <article
               key={card.id}
@@ -50,10 +78,15 @@ function Infrastructure() {
               <div className={`infrastructure__icon infrastructure__icon--${card.variant}`}>
                 <img src={card.icon} alt="" />
               </div>
+
               <h3 className="infrastructure__card-title">{card.title}</h3>
-              <p className={`infrastructure__card-accent infrastructure__card-accent--${card.variant}`}>
+
+              <p
+                className={`infrastructure__card-accent infrastructure__card-accent--${card.variant}`}
+              >
                 {card.accent}
               </p>
+
               <p className="infrastructure__card-text">{card.text}</p>
             </article>
           ))}

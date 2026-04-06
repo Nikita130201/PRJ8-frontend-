@@ -219,7 +219,8 @@ function GeoMap() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const hoveredCountry =
-    interactiveCountries.find((country) => country.id === hoveredCountryId) ?? null;
+    interactiveCountries.find((country) => country.id === hoveredCountryId) ??
+    null;
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(hover: none), (pointer: coarse)");
@@ -278,8 +279,12 @@ function GeoMap() {
                         const isHovered = country?.id === hoveredCountryId;
                         const classNames = ["geomap__map-country"];
 
+                        if (country && isHovered) {
+                          classNames.push("is-hovered");
+                        }
+
                         if (hoveredCountryId) {
-                          if (isHovered) {
+                          if (isHovered && level) {
                             classNames.push(`is-level-${level}`);
                           } else {
                             classNames.push("is-dimmed");
@@ -343,29 +348,61 @@ function GeoMap() {
                     setHoveredCountryId(null);
                   }}
                 >
-                  <h3 className="geomap__country-card-title">{hoveredCountry.label}</h3>
+                  <h3 className="geomap__country-card-title">
+                    {hoveredCountry.label}
+                  </h3>
 
-                  <div className={`geomap__country-card-chip geomap__country-card-chip--${hoveredCountry.level}`}>
-                    <span className="geomap__country-card-chip-dot" aria-hidden="true" />
+                  <div
+                    className={`geomap__country-card-chip geomap__country-card-chip--${hoveredCountry.level}`}
+                  >
+                    <span
+                      className="geomap__country-card-chip-dot"
+                      aria-hidden="true"
+                    />
                     <span>{levelLabelMap[hoveredCountry.level]}</span>
                   </div>
 
                   <div className="geomap__country-card-divider" />
 
                   <div className="geomap__country-card-label">ГРОСС ДОХОД</div>
-                  <div className="geomap__country-card-income">{hoveredCountry.grossIncome}</div>
+                  <div className="geomap__country-card-income">
+                    {hoveredCountry.grossIncome}
+                  </div>
                   <div className="geomap__country-card-period">30 дней</div>
 
                   <div className="geomap__country-card-divider" />
 
                   <div className="geomap__country-card-note-row">
-                    <span className="geomap__country-card-note-icon" aria-hidden="true">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.4" />
-                        <path d="M4.5 8.2L6.8 10.5L11.5 5.8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    <span
+                      className="geomap__country-card-note-icon"
+                      aria-hidden="true"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="8"
+                          cy="8"
+                          r="7"
+                          stroke="currentColor"
+                          strokeWidth="1.4"
+                        />
+                        <path
+                          d="M4.5 8.2L6.8 10.5L11.5 5.8"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </span>
-                    <p className="geomap__country-card-note">{hoveredCountry.note}</p>
+                    <p className="geomap__country-card-note">
+                      {hoveredCountry.note}
+                    </p>
                   </div>
                 </aside>
               )}
@@ -375,9 +412,9 @@ function GeoMap() {
               {mapLegend.map((item) => (
                 <div
                   key={item.id}
-                  className={`geomap__legend-item geomap__legend-item--${item.color} ${activeLevel === item.color ? 'is-active' : ''}`}
+                  className={`geomap__legend-item geomap__legend-item--${item.color} ${activeLevel === item.color ? "is-active" : ""}`}
                   onClick={() => handleLegendClick(item.color)}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 >
                   <span className="geomap__legend-dot" aria-hidden="true" />
                   <span>{item.label}</span>
@@ -389,12 +426,13 @@ function GeoMap() {
 
         <div className="geomap__intro">
           <h3 className="geomap__intro-title">
-            Мы <span className="section__title-accent">разделили</span> страны на{" "}
-            <span className="section__title-accent">4 уровня</span> по степени юридических рисков
+            Мы <span className="section__title-accent">разделили</span> страны
+            на <span className="section__title-accent">4 уровня</span> по
+            степени юридических рисков
           </h3>
           <p className="geomap__intro-text">
-            Уровень 1, 2 и 3, а также те страны, где мы не имеем практического опыта работы с
-            телекоммуникационным оборудованием
+            Уровень 1, 2 и 3, а также те страны, где мы не имеем практического
+            опыта работы с телекоммуникационным оборудованием
           </p>
         </div>
 
@@ -418,26 +456,50 @@ function GeoMap() {
                   </span>
 
                   <span className="geomap__accordion-heading">
-                    <span className="geomap__accordion-title">{level.title}</span>
-                    <span className="geomap__accordion-subtitle">{level.subtitle}</span>
+                    <span className="geomap__accordion-title">
+                      {level.title}
+                    </span>
+                    <span className="geomap__accordion-subtitle">
+                      {level.subtitle}
+                    </span>
                   </span>
 
                   <span className="geomap__accordion-arrow" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4.5 6.75L9 11.25L13.5 6.75"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
                     </svg>
                   </span>
                 </button>
 
-                {isOpen && (
+                <div className={`geomap__accordion-content ${isOpen ? "is-open" : ""}`}
+                >
                   <div className="geomap__accordion-body">
                     {level.body.map((paragraph) => (
-                      <p key={paragraph} className="geomap__accordion-text">{paragraph}</p>
+                      <p key={paragraph} className="geomap__accordion-text">
+                        {paragraph}
+                      </p>
                     ))}
 
                     {level.sections.map((section) => (
-                      <div key={section.title} className="geomap__accordion-section">
-                        <h4 className="geomap__accordion-section-title">{section.title}</h4>
+                      <div
+                        key={section.title}
+                        className="geomap__accordion-section"
+                      >
+                        <h4 className="geomap__accordion-section-title">
+                          {section.title}
+                        </h4>
                         <p className="geomap__accordion-text">{section.text}</p>
                       </div>
                     ))}
@@ -445,14 +507,17 @@ function GeoMap() {
                     {level.chips.length > 0 && (
                       <div className="geomap__chips">
                         {level.chips.map((chip) => (
-                          <span key={chip} className={`geomap__chip geomap__chip--${level.color}`}>
+                          <span
+                            key={chip}
+                            className={`geomap__chip geomap__chip--${level.color}`}
+                          >
                             {chip}
                           </span>
                         ))}
                       </div>
                     )}
                   </div>
-                )}
+                </div>
               </article>
             );
           })}

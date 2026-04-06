@@ -20,11 +20,47 @@
   margin-bottom: 32px;
 }
 
+/* ================= CARD ================= */
+
 .security__card.card {
+  position: relative;
+  overflow: hidden;
   min-height: 282px;
   padding: 48px;
   border-radius: 24px;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease;
+    cursor: pointer;
 }
+
+.security__card.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 42%
+  );
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
+}
+
+.security__card.card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+/* VARIANTS */
 
 .security__card--blue.card {
   background: $primary-900;
@@ -36,6 +72,37 @@
   border: 1px solid $success-700;
 }
 
+.security__card--blue.card::after {
+  box-shadow: 0 0 30px rgba($primary-500, 0.18);
+}
+
+.security__card--green.card::after {
+  box-shadow: 0 0 30px rgba($success-400, 0.16);
+}
+
+/* HOVER */
+
+.security__card.card:hover {
+  transform: translateY(-6px);
+}
+
+.security__card--blue.card:hover {
+  border-color: rgba($primary-300, 0.75);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
+}
+
+.security__card--green.card:hover {
+  border-color: rgba($success-400, 0.55);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32);
+}
+
+.security__card.card:hover::before,
+.security__card.card:hover::after {
+  opacity: 1;
+}
+
+/* ================= ICON ================= */
+
 .security__icon {
   width: 96px;
   height: 96px;
@@ -45,41 +112,72 @@
   border-radius: 20px;
   font-size: 34px;
   line-height: 1;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease,
+    border-color 0.28s ease;
 }
 
 .security__icon img {
   width: 36px;
   height: 36px;
   object-fit: contain;
+  transition: transform 0.28s ease;
 }
 
 .security__card--blue .security__icon {
   background: rgba($primary-600, 0.54);
-  color: $primary-300;
   border: 1px solid $border-primary-icon;
 }
 
 .security__card--green .security__icon {
   background: rgba($success-700, 0.44);
-  color: $success-800;
   border: 1px solid $border-success-faint;
 }
+
+/* ICON HOVER */
+
+.security__card.card:hover .security__icon {
+  transform: translateY(-2px);
+}
+
+.security__card--blue.card:hover .security__icon {
+  box-shadow: 0 10px 24px rgba($primary-500, 0.16);
+}
+
+.security__card--green.card:hover .security__icon {
+  box-shadow: 0 10px 24px rgba($success-400, 0.14);
+}
+
+.security__card.card:hover .security__icon img {
+  transform: scale(1.06);
+}
+
+/* ================= TEXT ================= */
 
 .security__card-title {
   margin: 0 0 16px;
   font-size: 42px;
   line-height: 1.08;
   font-weight: 700;
+  transition: transform 0.28s ease;
 }
 
 .security__card-text {
   color: $gray-600;
   font-size: $size-lead-desktop;
   line-height: 1.5;
+  transition: transform 0.28s ease;
 
   .security__card--green & {
     color: rgba($success-100, 0.72);
   }
+}
+
+.security__card.card:hover .security__card-title,
+.security__card.card:hover .security__card-text {
+  transform: translateY(-1px);
 }
 
 .security__card-highlight {
@@ -91,6 +189,8 @@
   color: $success-100;
 }
 
+/* ================= RESULT BLOCK ================= */
+
 .security__result.card {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -98,6 +198,11 @@
   border-radius: 24px;
   background: $gray-900;
   border: 1px solid $border-primary-soft;
+  transition: box-shadow 0.28s ease;
+}
+
+.security__result.card:hover {
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
 }
 
 .security__result-side {
@@ -141,6 +246,8 @@
   color: $success-400;
 }
 
+/* ================= ADAPTIVE ================= */
+
 @media (max-width: 1600px) {
   .security__card-title {
     font-size: 26px;
@@ -160,10 +267,6 @@
     min-height: auto;
   }
 
-  .security__card-text {
-    max-width: none;
-  }
-
   .security__result {
     grid-template-columns: 1fr;
   }
@@ -176,7 +279,6 @@
 }
 
 @media (max-width: 640px) {
-
   .security.section {
     padding-top: 96px;
   }
@@ -185,7 +287,7 @@
     margin-bottom: 32px;
   }
 
-  .security__card {
+  .security__card.card {
     padding: 28px 24px;
   }
 
@@ -194,7 +296,6 @@
     height: 62px;
     margin-bottom: 22px;
     border-radius: 18px;
-    font-size: 30px;
   }
 
   .security__card-title {
