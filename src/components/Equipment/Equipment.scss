@@ -147,35 +147,9 @@
 .equipment__step {
   max-width: 430px;
   min-height: 230px;
-
-  opacity: 0;
-  transform: translateY(24px);
-
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
+  transition: transform 0.28s ease;
 }
 
-/* появление */
-.equipment__steps--visible .equipment__step {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* задержка по очереди */
-.equipment__steps--visible .equipment__step:nth-child(1) {
-  transition-delay: 0.05s;
-}
-
-.equipment__steps--visible .equipment__step:nth-child(2) {
-  transition-delay: 0.15s;
-}
-
-.equipment__steps--visible .equipment__step:nth-child(3) {
-  transition-delay: 0.25s;
-}
-
-/* hover */
 .equipment__step:hover {
   transform: translateY(-4px);
 }
@@ -468,21 +442,52 @@
   color: $success-300;
 }
 
+@media (max-width: 1760px) {
+  .equipment__panel {
+    padding: 44px 40px;
+  }
+
+  .equipment__steps {
+    gap: 52px;
+  }
+
+  .equipment__step {
+    max-width: none;
+  }
+
+  .equipment__step-title {
+    max-width: 100%;
+  }
+
+  .equipment__step-text {
+    max-width: 100%;
+    min-height: 0;
+  }
+}
+
 @media (max-width: 1440px) {
   .equipment__panel {
-    padding: 36px;
+    padding: 40px 32px;
   }
 
   .equipment__steps {
     gap: 32px;
   }
 
+  .equipment__step {
+    max-width: none;
+    min-height: 0;
+  }
+
   .equipment__step-title {
     font-size: 26px;
+    max-width: 100%;
   }
 
   .equipment__step-text {
     font-size: 17px;
+    max-width: 100%;
+    min-height: 0;
   }
 
   .equipment__calculator {

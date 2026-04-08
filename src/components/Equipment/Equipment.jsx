@@ -30,26 +30,14 @@ const equipmentSteps = [
 ];
 
 function Equipment() {
-  const stepsRef = useRef(null);
   const progressRef = useRef(null);
 
-  const [isStepsVisible, setIsStepsVisible] = useState(false);
   const [isProgressVisible, setIsProgressVisible] = useState(false);
 
   useEffect(() => {
-    const stepsElement = stepsRef.current;
     const progressElement = progressRef.current;
 
-    if (!stepsElement || !progressElement) return;
-
-    const stepsObserver = new IntersectionObserver(
-      ([entry]) => {
-        setIsStepsVisible(entry.isIntersecting);
-      },
-      {
-        threshold: 0.50,
-      }
-    );
+    if (!progressElement) return;
 
     const progressObserver = new IntersectionObserver(
       ([entry]) => {
@@ -60,11 +48,9 @@ function Equipment() {
       }
     );
 
-    stepsObserver.observe(stepsElement);
     progressObserver.observe(progressElement);
 
     return () => {
-      stepsObserver.disconnect();
       progressObserver.disconnect();
     };
   }, []);
@@ -85,12 +71,7 @@ function Equipment() {
 
         <div className="equipment__panel">
           {/* ШАГИ */}
-          <div
-            className={`equipment__steps ${
-              isStepsVisible ? 'equipment__steps--visible' : ''
-            }`}
-            ref={stepsRef}
-          >
+          <div className="equipment__steps">
             {equipmentSteps.map((step) => (
               <article className="equipment__step" key={step.number}>
                 <div
