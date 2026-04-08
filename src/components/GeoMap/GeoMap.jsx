@@ -327,7 +327,7 @@ function GeoMap() {
 
               {hoveredCountry && (
                 <aside
-                  className="geomap__country-card"
+                  className={`geomap__country-card geomap__country-card--${hoveredCountry.level}`}
                   aria-live="polite"
                   style={
                     isTouchDevice

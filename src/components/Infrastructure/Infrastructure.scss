@@ -212,7 +212,43 @@
   transform: translateY(-1px);
 }
 
-@media (max-width: $breakpoint-laptop) {
+@media (max-width: 1760px) {
+  .infrastructure__grid {
+    gap: 28px;
+  }
+
+  .infrastructure__card {
+    min-height: 326px;
+    padding: 40px 40px 34px;
+  }
+}
+
+@media (max-width: 1440px) and (min-width: 1361px) {
+  .infrastructure__grid {
+    justify-items: center;
+    gap: 18px;
+  }
+
+  .infrastructure__card {
+    width: 100%;
+    max-width: 390px;
+    min-height: auto;
+    padding: 34px 24px 28px;
+  }
+
+  .infrastructure__icon {
+    width: 84px;
+    height: 84px;
+    margin-bottom: 22px;
+  }
+
+  .infrastructure__icon img {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 1360px) {
   .infrastructure__grid {
     gap: 24px;
   }
