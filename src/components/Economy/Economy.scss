@@ -454,18 +454,104 @@
   }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1760px), (max-height: 980px) {
+  .economy.section {
+    padding-top: 72px;
+  }
+
+  .economy__subtitle {
+    margin-bottom: 42px;
+  }
+
+  .economy__plans {
+    gap: 20px;
+  }
+
   .economy__card {
-    min-height: 720px;
-    padding: 48px;
+    min-height: 0;
+    padding: 36px;
+  }
+
+  .economy__badge {
+    margin-bottom: 24px;
+    padding: 12px 20px;
+    font-size: 18px;
+  }
+
+  .economy__card-title {
+    font-size: 34px;
+  }
+
+  .economy__card-subtitle {
+    margin-bottom: 32px;
+    font-size: 18px;
+  }
+
+  .economy__value {
+    font-size: 76px;
+  }
+
+  .economy__caption {
+    margin-bottom: 32px;
+    font-size: 18px;
+  }
+
+  .economy__features {
+    gap: 18px;
+  }
+
+  .economy__feature {
+    font-size: 17px;
+    gap: 16px;
+  }
+
+  .economy__button {
+    margin-top: 36px;
+    padding: 18px 0;
+    font-size: 18px;
+  }
+
+  .economy__bonus {
+    margin-top: 32px;
+    min-height: 0;
+    padding: 32px;
+  }
+
+  .economy__bonus-icon {
+    width: 80px;
+    height: 80px;
+    padding: 20px;
+  }
+
+  .economy__bonus-title {
+    font-size: 26px;
+  }
+
+  .economy__bonus-button {
+    padding: 18px 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1440px), (max-height: 860px) {
+  .economy__card {
+    padding: 32px;
   }
 
   .economy__card-title {
     font-size: 30px;
   }
 
+  .economy__card-subtitle {
+    font-size: 16px;
+  }
+
   .economy__value {
     font-size: 68px;
+  }
+
+  .economy__caption {
+    font-size: 16px;
   }
 
   .economy__feature {
