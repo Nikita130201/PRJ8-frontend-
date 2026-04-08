@@ -331,52 +331,347 @@
   font-weight: 500;
 }
 
-@media (max-width: $breakpoint-laptop) {
+@media (max-width: 1760px) {
   .hero__grid {
-    grid-template-columns: minmax(520px, 640px) minmax(500px, 620px);
-    gap: 32px;
-    min-height: auto;
-    padding-top: 52px;
+    grid-template-columns: minmax(560px, 700px) minmax(520px, 680px);
+    gap: 40px;
+    min-height: 760px;
+    padding-top: 72px;
   }
 
   .hero__content {
-    max-width: 640px;
-    min-height: auto;
+    max-width: 700px;
+  }
+
+  .hero__content-main {
+    gap: 26px;
+    padding-bottom: 40px;
+  }
+
+  .hero__badge {
+    padding: 16px 28px;
+    font-size: 18px;
   }
 
   .hero__title {
-    font-size: $size-h1-laptop;
+    max-width: 700px;
+    font-size: 68px;
+  }
+
+  .hero__text {
     max-width: 620px;
+    font-size: 16px;
+  }
+
+  .hero__chips {
+    max-width: 620px;
+    gap: 10px;
+  }
+
+  .hero__chip {
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .hero__chip--garant {
+    min-width: 226px;
+  }
+
+  .hero__chip--income {
+    min-width: 236px;
+  }
+
+  .hero__chip--gross {
+    min-width: 170px;
+  }
+
+  .hero__chip--geo {
+    min-width: 202px;
+  }
+
+  .hero__button {
+    padding: 18px 42px;
+    font-size: 18px;
+  }
+
+  .hero__note {
+    max-width: 620px;
+    font-size: 12px;
+  }
+
+  .hero__visual {
+    width: min(100%, 700px);
+    height: 640px;
+    margin-top: 64px;
+    padding: 20px;
+    border-radius: 28px;
+  }
+
+  .hero__visual::before {
+    inset: 60px 44px 22px 30px;
+  }
+
+  .hero__visual-frame {
+    width: min(100%, 660px);
+    height: 592px;
+  }
+
+  .hero__floating {
+    padding: 18px 24px 16px;
+    gap: 8px;
+  }
+
+  .hero__floating strong,
+  .hero__floating strong.hero__floating-strong--green {
+    font-size: 36px;
+  }
+
+  .hero__floating-label,
+  .hero__floating-meta {
+    font-size: 17px;
+  }
+
+  .hero__floating--top {
+    width: 214px;
+    min-height: 116px;
+    top: -28px;
+    left: -20px;
+  }
+
+  .hero__floating--bottom {
+    width: 250px;
+    min-height: 150px;
+    right: -20px;
+    bottom: -24px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .hero__grid {
+    min-height: 680px;
+    grid-template-columns: minmax(500px, 590px) minmax(440px, 540px);
+    gap: 24px;
+    padding-top: 48px;
+    align-items: stretch;
+  }
+
+  .hero__content {
+    max-width: 590px;
+    min-height: 590px;
+    justify-content: space-between;
+  }
+
+  .hero__content-main {
+    align-items: flex-start;
+    gap: 18px;
+    padding-bottom: 20px;
+  }
+
+  .hero__badge {
+    padding: 12px 22px;
+    font-size: 15px;
+  }
+
+  .hero__title {
+    max-width: 590px;
+    font-size: 58px;
+  }
+
+  .hero__text {
+    max-width: 560px;
+    font-size: 14px;
+  }
+
+  .hero__chips {
+    max-width: 520px;
+    gap: 8px;
+  }
+
+  .hero__chip {
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+
+  .hero__chip--garant {
+    min-width: 210px;
+  }
+
+  .hero__chip--income {
+    min-width: 238px;
+  }
+
+  .hero__chip--gross {
+    min-width: 154px;
+  }
+
+  .hero__chip--geo {
+    min-width: 206px;
+  }
+
+  .hero__button {
+    padding: 15px 28px;
+    font-size: 15px;
+  }
+
+  .hero__note {
+    max-width: 560px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .hero__visual {
+    width: min(100%, 540px);
+    height: 540px;
+    margin-top: 42px;
+    padding: 14px;
+  }
+
+  .hero__visual-frame {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  .hero__floating--top {
+    width: 186px;
+    min-height: 102px;
+    top: -18px;
+    left: -8px;
+  }
+
+  .hero__floating strong,
+  .hero__floating strong.hero__floating-strong--green {
+    font-size: 30px;
+  }
+
+  .hero__floating-label,
+  .hero__floating-meta {
+    font-size: 14px;
+  }
+
+  .hero__floating--bottom {
+    width: 260px;
+    min-height: 118px;
+    bottom: -18px;
+    right: -8px;
+  }
+
+  .hero__floating-meta {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1360px) {
+  .hero__grid {
+    grid-template-columns: minmax(460px, 560px) minmax(420px, 520px);
+    gap: 28px;
+    min-height: 720px;
+    padding-top: 46px;
+  }
+
+  .hero__content {
+    max-width: 560px;
+    min-height: auto;
+  }
+
+  .hero__content-main {
+    gap: 22px;
+    padding-bottom: 34px;
+  }
+
+  .hero__badge {
+    padding: 14px 24px;
+    font-size: 16px;
+  }
+
+  .hero__title {
+    font-size: 56px;
+    max-width: 560px;
   }
 
   .hero__text,
   .hero__chips,
   .hero__note {
-    max-width: 560px;
+    max-width: 500px;
+  }
+
+  .hero__text {
+    font-size: 15px;
+  }
+
+  .hero__chip {
+    padding: 11px 14px;
+    font-size: 14px;
+  }
+
+  .hero__chip--garant {
+    min-width: 204px;
+  }
+
+  .hero__chip--income {
+    min-width: 212px;
+  }
+
+  .hero__chip--gross {
+    min-width: 152px;
+  }
+
+  .hero__chip--geo {
+    min-width: 182px;
+  }
+
+  .hero__button {
+    padding: 17px 34px;
+    font-size: 16px;
   }
 
   .hero__visual {
     width: 100%;
-    max-width: 620px;
-    height: auto;
-    margin-top: 86px;
-    border-radius: 28px;
+    max-width: 520px;
+    height: 520px;
+    margin-top: 54px;
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .hero__visual::before {
+    inset: 48px 34px 18px 24px;
   }
 
   .hero__visual-frame {
     width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
+    height: 488px;
+    aspect-ratio: auto;
+  }
+
+  .hero__floating {
+    padding: 16px 20px 14px;
+  }
+
+  .hero__floating strong,
+  .hero__floating strong.hero__floating-strong--green {
+    font-size: 32px;
+  }
+
+  .hero__floating-label,
+  .hero__floating-meta {
+    font-size: 15px;
   }
 
   .hero__floating--top {
-    top: -8px;
-    left: -12px;
+    width: 190px;
+    min-height: 104px;
+    top: -14px;
+    left: -10px;
   }
 
   .hero__floating--bottom {
-    right: -12px;
-    bottom: -14px;
+    width: 228px;
+    min-height: 136px;
+    right: -10px;
+    bottom: -16px;
+    font-size: 16px;
   }
 }
 

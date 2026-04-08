@@ -53,7 +53,7 @@
 }
 
 .header__link:hover {
-  color: $success-500;
+  color: $primary-300;
 }
 
 .header__button {
@@ -70,12 +70,52 @@
   }
 }
 
-@media (max-width: $breakpoint-laptop) {
+@media (max-width: 1760px) {
+  .header__inner {
+    height: 112px;
+    width: min(100% - 160px, 1520px);
+  }
+
+  .header__logo-image {
+    width: 212px;
+    height: 22px;
+  }
+
+  .header__nav {
+    gap: 44px;
+  }
+
   .header__link {
-    font-size: $size-body-m-laptop;
+    font-size: 18px;
   }
 
   .header__button {
+    padding: 18px 34px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1360px) {
+  .header__inner {
+    height: 100px;
+    width: min(100% - 120px, 1360px);
+  }
+
+  .header__logo-image {
+    width: 198px;
+    height: 20px;
+  }
+
+  .header__nav {
+    gap: 32px;
+  }
+
+  .header__link {
+    font-size: 15px;
+  }
+
+  .header__button {
+    padding: 16px 28px;
     font-size: $size-button-m-laptop;
   }
 }
