@@ -248,13 +248,74 @@
 
 /* ================= ADAPTIVE ================= */
 
-@media (max-width: 1600px) {
+@media (max-width: 1760px) {
+  .security.section {
+    padding-top: 124px;
+  }
+
+  .security__grid {
+    gap: 24px;
+  }
+
+  .security__card.card {
+    padding: 40px 32px;
+    min-height: 250px;
+  }
+
+  .security__icon {
+    width: 82px;
+    height: 82px;
+    margin-bottom: 22px;
+  }
+
+  .security__icon img {
+    width: 30px;
+    height: 30px;
+  }
+
   .security__card-title {
-    font-size: 26px;
+    margin-bottom: 14px;
+    font-size: 34px;
+  }
+
+  .security__card-text {
+    font-size: 18px;
+  }
+
+  .security__result-side {
+    min-height: 118px;
+    padding: 28px 30px;
+  }
+
+  .security__result-label {
+    font-size: 16px;
   }
 
   .security__result-value {
     font-size: 36px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .security__grid {
+    gap: 20px;
+  }
+
+  .security__card.card {
+    padding: 32px 22px;
+  }
+
+  .security__card-title {
+    font-size: 24px;
+    line-height: 1.14;
+  }
+
+  .security__card-text {
+    font-size: 15px;
+  }
+
+  .security__result-value {
+    font-size: 32px;
   }
 }
 
